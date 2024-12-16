@@ -17,6 +17,10 @@ def main():
     # Model eğitimi
     trainer = ModelTrainer()
     models = trainer.train_evaluate_all(X_train, X_test, y_train, y_test)
+    # KNN için en iyi komşu sayısını bulma
+    best_neighbors = trainer.find_best_knn_neighbors(X_train, X_test, y_train, y_test)
+    # ModelTrainer'ı yeniden oluştur, bu sefer en iyi komşu sayısıyla
+    trainer = ModelTrainer(n_neighbors=best_neighbors)
 
     # Model performans analizi
     model_analyzer = ModelAnalyzer()
